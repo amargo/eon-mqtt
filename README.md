@@ -5,6 +5,7 @@ Jelenleg a json responsból is kötötten szedi ki az adatokat:
 https://github.com/amargo/eon-mqtt/blob/73a4605514c17313b990f830f92a71b1bc6968b2/read_eon_180_280.py#L111-L116
 
 # Előfeltételek
+Olyan GSM-es óra, amit küldi az adatokat a szolgáltató felé.
 E.ON távleolvasási portálján érvényes regisztráció: https://energia.eon-hungaria.hu/W1000
 Érvényes POD elérés után egy munkaterületet kell létrehozni:
 <p align="center">    
