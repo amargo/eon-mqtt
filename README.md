@@ -7,7 +7,7 @@ https://github.com/amargo/eon-mqtt/blob/73a4605514c17313b990f830f92a71b1bc6968b2
 # Előfeltételek
 Olyan GSM-es óra, amit küldi az adatokat a szolgáltató felé.
 E.ON távleolvasási portálján érvényes regisztráció: https://energia.eon-hungaria.hu/W1000
-Érvényes POD elérés után egy munkaterületet kell létrehozni:
+Érvényes POD elérés után egy munkaterületet kell létrehozni, amin csak az 1.8.0 és 2.8.0 szerepeljen:
 <p align="center">    
         <img src="https://github.com/amargo/eon-mqtt/raw/master/img/eon-workarea.PNG" alt="eon-mqtt">
     <br>
