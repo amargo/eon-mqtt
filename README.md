@@ -37,9 +37,9 @@ Továbbá két Id-t kellett még megtudnom ezeket postman-os vizsgálatok során
 	# Add row
 	0 5 * * * /usr/bin/python3 <path to eon-mqtt>/read_eon_180_280.py >> <path to eon-mqtt>/eon.log 2>&1  
 
-4.Az `mqtt.ini.sample` kell át nevezni `mqtt.ini`-re és beállítani az MQTT borker elérését `mqtt.ini`-ben.
+4.Az `mqtt.ini.sample` kell át nevezni `mqtt.ini`-re és beállítani az MQTT borker elérését.
 
-5.Az `eon.ini.sample` kell át nevezni `eon.ini`-re és beállítani az E.ON elérését `eon.ini`-ban:
+5.Az `eon.ini.sample` kell át nevezni `eon.ini`-re és beállítani az E.ON elérését:
 
     [MeroOra]
     eon_url = https://energia.eon-hungaria.hu/W1000
