@@ -19,6 +19,12 @@ Továbbá két Id-t kellett még megtudnom ezeket postman-os vizsgálatok során
     <br>
 </p>
 
+Chrome-ban login előtt egy F12 és a Network tabon látszódni fog a reportId és a kötőjel (vagy aláhúzás). 
+<p align="center">    
+        <img src="https://github.com/amargo/eon-mqtt/raw/master/img/eon_reportId_hyphen.PNG" alt="eon-mqtt">
+    <br>
+</p>
+
 # Installation
 
 1.Ezeket a csomagokat kell tepeíteni:
