@@ -119,7 +119,7 @@ def read_data(config, area, mqtt_broker_cfg):
         availability = 'Online'
     except Exception as ex:
         availability = 'Offline'
-        print(datetime.now(), "Error retrive data from {0}.")
+        print(datetime.now(), "Error retrive data from {0}.".format(str(ex)))
     finally:
         messages.append({'topic': config[area].get("availability_topic"), 'payload': availability, 'retain': config[area].getboolean("retain", False)})
 
