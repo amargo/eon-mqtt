@@ -71,7 +71,7 @@ def read_data(config, area, mqtt_broker_cfg):
 
     try:
         session = requests.Session()
-        content = session.get(account_url)
+        content = session.get(account_url, verify = False)
         index_content = BeautifulSoup(content.content, "html.parser")
         request_verification_token = get_verificationtoken(index_content)
 
@@ -82,7 +82,7 @@ def read_data(config, area, mqtt_broker_cfg):
         }
 
         header = {"Content-Type": "application/x-www-form-urlencoded"}
-        content = session.post(account_url, data=payload, headers=header)
+        content = session.post(account_url, data=payload, headers=header, verify = False)
         # print(session.cookies.get_dict())
 
         reportId = config[area].get('reportId')
