@@ -60,7 +60,7 @@ def send_json(mqtt_broker_cfg, messages):
 
         publish.multiple(messages, hostname=mqtt_broker_cfg.get("host"), port=mqtt_broker_cfg.getint("port"), client_id=mqtt_broker_cfg.get("client"), auth=auth)
     except Exception as ex:
-        print(datetime.datetime.now(), "Error publishing to MQTT: {0}".format(str(ex)))
+        print(datetime.now(), "Error publishing to MQTT: {0}".format(str(ex)))
 
 def read_data(config, area, mqtt_broker_cfg):
     account_url = config[area].get('eon_url') + "/Account/Login"
