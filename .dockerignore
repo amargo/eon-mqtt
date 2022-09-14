@@ -1,6 +1,7 @@
+.git
+.github
 .vscode
 **/eon.ini
 **/mqtt.ini
 **/.env
-*.html
 **/*.pyc
