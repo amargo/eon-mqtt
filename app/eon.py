@@ -27,6 +27,7 @@ MQTT_TOPIC = 'sensors/eon'
 BASE_URL = 'https://energia.eon-hungaria.hu/W1000/'
 ACCOUNT_URL = f'{BASE_URL}Account/Login'
 PROFILE_DATA_URL = f'{BASE_URL}ProfileData/ProfileData'
+EON_PEM_PATH = f'{os.path.dirname(os.path.realpath(__file__))}/energia.eon-hungaria.hu.pem'
 
 
 def get_verificationtoken(content):
@@ -58,8 +59,7 @@ def main():
     eon_password = os.getenv('EON_PASSWORD')
 
     session = requests.Session()
-    # Suppress SSL certificate check!
-    response = session.get(ACCOUNT_URL, verify=False)
+    response = session.get(ACCOUNT_URL, verify=EON_PEM_PATH)
     if response.status_code != 200:
         raise Exception(
             f"Failed to get access token, HTTP status code={response.status_code}")
@@ -78,7 +78,7 @@ def main():
     header = {"Content-Type": "application/x-www-form-urlencoded"}
     log(f"Login into E.ON portal")
     response = session.post(ACCOUNT_URL, data=body_data,
-                            headers=header, verify=False)  # Suppress SSL certificate check!
+                            headers=header, verify=EON_PEM_PATH)
     if response.status_code != 200:
         raise Exception(
             f"Failed to login, HTTP status code={response.status_code}")

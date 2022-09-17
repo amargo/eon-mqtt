@@ -3,4 +3,5 @@
 **/mqtt.ini
 **/.env
 *.html
+**/.cer
 **/*.pyc
