@@ -63,6 +63,7 @@ EON_HYPHEN=<->
 MQTT_HOST=<mqtt host>
 MQTT_USER=<felhasználói azonosítód>
 MQTT_PASSWORD=<felhasználói jelszavad>
+MQTT_TOPIC=<oplionális paraméter>
 
 TZ=Europe/Budapest
 ``` 
