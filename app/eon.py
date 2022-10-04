@@ -23,11 +23,11 @@ DOCUMENTATION = '''
 result = dict(message='')
 __FILE = Path(__file__)
 MQTT_CLIENT_ID = __FILE.name
-MQTT_TOPIC = 'sensors/eon'
+MQTT_TOPIC_DEFAULT = 'sensors/eon'
 BASE_URL = 'https://energia.eon-hungaria.hu/W1000/'
 ACCOUNT_URL = f'{BASE_URL}Account/Login'
 PROFILE_DATA_URL = f'{BASE_URL}ProfileData/ProfileData'
-EON_PEM_PATH = f'{os.path.dirname(os.path.realpath(__file__))}/energia.eon-hungaria.hu.pem'
+# EON_PEM_PATH = f'{os.path.dirname(os.path.realpath(__file__))}/energia.eon-hungaria.hu.pem'
 
 
 def get_verificationtoken(content):
@@ -57,9 +57,10 @@ def main():
     # load_dotenv()
     eon_username = os.getenv('EON_USER')
     eon_password = os.getenv('EON_PASSWORD')
+    mqtt_topic = os.getenv('MQTT_TOPIC', MQTT_TOPIC_DEFAULT)
 
     session = requests.Session()
-    response = session.get(ACCOUNT_URL, verify=EON_PEM_PATH)
+    response = session.get(ACCOUNT_URL, verify=True)
     if response.status_code != 200:
         raise Exception(
             f"Failed to get access token, HTTP status code={response.status_code}")
@@ -78,7 +79,7 @@ def main():
     header = {"Content-Type": "application/x-www-form-urlencoded"}
     log(f"Login into E.ON portal")
     response = session.post(ACCOUNT_URL, data=body_data,
-                            headers=header, verify=EON_PEM_PATH)
+                            headers=header, verify=True)
     if response.status_code != 200:
         raise Exception(
             f"Failed to login, HTTP status code={response.status_code}")
@@ -119,12 +120,12 @@ def main():
     })
     messages = []
     mqtt_msg = {
-        'topic': MQTT_TOPIC,
+        'topic': mqtt_topic,
         'payload': data,
         'retain': True
     }
     messages.append(mqtt_msg)
-    messages.append({'topic': f'{MQTT_TOPIC}/availability',
+    messages.append({'topic': f'{mqtt_topic}/availability',
                     'payload': 'Online', 'retain': True})
 
     mqtt_client = get_mqtt_client()
