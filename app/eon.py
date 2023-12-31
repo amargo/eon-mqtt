@@ -11,9 +11,9 @@ from pathlib import Path
 from logger import log
 from bs4 import BeautifulSoup
 from mqtt_client import MqttClient
+from fake_useragent import UserAgent
 
-# from dotenv import load_dotenv
-
+from dotenv import load_dotenv
 
 DOCUMENTATION = '''
 ---
@@ -55,6 +55,9 @@ def get_mqtt_client():
 
 def main():
     # load_dotenv()
+    
+    ua = UserAgent().random
+    
     eon_username = os.getenv('EON_USER')
     eon_password = os.getenv('EON_PASSWORD')
     mqtt_topic = os.getenv('MQTT_TOPIC', MQTT_TOPIC_DEFAULT)
@@ -85,22 +88,17 @@ def main():
             f"Failed to login, HTTP status code={response.status_code}")
 
     reportId = os.getenv('EON_REPORT_ID')
-    since = os.getenv('SINCE')
-    until = os.getenv('UNTIL')
-    hyphen = os.getenv('EON_HYPHEN')
+    offset = int(os.getenv('EON_OFFSET', '-3'))
 
-    if not since:
-        since = (datetime.now() + timedelta(days=-2)).strftime('%Y-%m-%d')
-    if not until:
-        until = (datetime.now() + timedelta(days=-1)).strftime('%Y-%m-%d')
+    since = (datetime.now() + timedelta(days=-1 + offset)).strftime('%Y-%m-%d')
+    until = (datetime.now()).strftime('%Y-%m-%dT23:00:00.000Z')
 
     params = {
         "page": 1,
         "perPage": 2,
         "reportId": reportId,
         "since": since,
-        "until": until,
-        "-": hyphen
+        "until": until
     }
 
     log(f"Retrieve data from E.ON")

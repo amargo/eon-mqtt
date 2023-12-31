@@ -58,7 +58,6 @@ Legegyszerübb egy .env fájlt használni, ehhez létre kell hozni pl egy app ma
 EON_USER=<felhasználói azonosítód>
 EON_PASSWORD=<felhasználói jelszavad>
 EON_REPORT_ID=<reportId>
-EON_HYPHEN=<->
 
 MQTT_HOST=<mqtt host>
 MQTT_USER=<felhasználói azonosítód>
